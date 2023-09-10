@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>query.xml</comment>
+<entry key="selectAll">SELECT * FROM BOOKCAFE</entry>
+<entry key="insertBook">INSERT INTO BOOKCAFE VALUES(?, ?, ?, ?, ?, ?)</entry>
+<entry key="selectByBookName">SELECT * FROM BOOKCAFE WHERE BOOK_NAME LIKE ?</entry>
+<entry key="updateBook">UPDATE BOOKCAFE SET THEME = ?, PUBLISHER = ?, STOCK = ? WHERE BOOK_NO = ?</entry>
+<entry key="deleteBook">DELETE FROM BOOKCAFE WHERE BOOK_NO = ?</entry>
+<entry key="checkStock">SELECT * FROM BOOKCAFE WHERE BOOK_NO = ?</entry>
+<entry key="lendBook">UPDATE BOOKCAFE SET STOCK = STOCK - ? WHERE BOOK_NO = ?</entry>
+<entry key="receiveBook">UPDATE BOOKCAFE SET STOCK = STOCK + ? WHERE BOOK_NO = ?</entry>
+</properties>
