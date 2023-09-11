@@ -1,7 +1,7 @@
 // 2021.11.25(목) 16h
-package com.kh.model.dao;
+package src.com.kh.model.dao;
 
-import static com.kh.common.JDBCTemplate.close;
+import static src.com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.model.vo.Member;
+import src.com.kh.model.vo.Member;
 
 public class MemberDao {
 	/* JDBC용 객체

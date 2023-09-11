@@ -1,19 +1,17 @@
 package src.com.kh.model.dao;
 
-import static src.com.kh.common.JDBCTemplate.close;
+import src.com.kh.model.vo.Product;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.model.vo.Product;
+import static src.com.kh.common.JDBCTemplate.close;
 
 public class ProductDao {
 

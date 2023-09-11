@@ -1,5 +1,5 @@
 // 2021.11.29(월) 9h
-package com.kh.common;
+package src.com.kh.common;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

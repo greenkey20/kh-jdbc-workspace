@@ -1,113 +1,114 @@
-package com.kh.model.service;
+package src.com.kh.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.model.dao.BookCafeDao;
-import com.kh.model.vo.BookCafe;
-import static com.kh.common.JDBCTemplate.*;
+import src.com.kh.model.dao.BookCafeDao;
+import src.com.kh.model.vo.BookCafe;
+
+import static src.com.kh.common.JDBCTemplate.*;
 
 public class BookCafeService {
 
-	public ArrayList<BookCafe> selectAll() {
+    public ArrayList<BookCafe> selectAll() {
 
-		Connection conn = getconnection();
+        Connection conn = getconnection();
 
-		ArrayList<BookCafe> list = new BookCafeDao().selectAll(conn);
+        ArrayList<BookCafe> list = new BookCafeDao().selectAll(conn);
 
-		close(conn);
+        close(conn);
 
-		return list;
-	}
+        return list;
+    }
 
-	public int insertProduct(BookCafe bc) {
+    public int insertProduct(BookCafe bc) {
 
-		Connection conn = getconnection();
+        Connection conn = getconnection();
 
-		int result = new BookCafeDao().insertBook(conn, bc);
+        int result = new BookCafeDao().insertBook(conn, bc);
 
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
 
-		close(conn);
+        close(conn);
 
-		return result;
-	}
+        return result;
+    }
 
-	public ArrayList<BookCafe> selectByBookName(String keyword) {
+    public ArrayList<BookCafe> selectByBookName(String keyword) {
 
-		Connection conn = getconnection();
-		
-		ArrayList<BookCafe> BList = new BookCafeDao().selectByBookName(conn, keyword);
+        Connection conn = getconnection();
 
-		close(conn);
+        ArrayList<BookCafe> BList = new BookCafeDao().selectByBookName(conn, keyword);
 
-		return BList;
+        close(conn);
 
-	}
+        return BList;
 
-	public int updateBook(BookCafe b) {
-		
-		Connection conn = getconnection();
+    }
 
-		int result = new BookCafeDao().updateBook(conn, b);
+    public int updateBook(BookCafe b) {
 
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+        Connection conn = getconnection();
 
-		close(conn);
+        int result = new BookCafeDao().updateBook(conn, b);
 
-		return result;
-	}
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
 
-	public int deleteBook(int book_no) {
-		
-		Connection conn = getconnection();
-		
-		int result = new BookCafeDao().deleteBook(conn, book_no);
+        close(conn);
 
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+        return result;
+    }
 
-		close(conn);
-		
-		return result;
-	}
+    public int deleteBook(int book_no) {
 
-	public int lendBook(int book_no, int stock) {
+        Connection conn = getconnection();
 
-		Connection conn = getconnection();
+        int result = new BookCafeDao().deleteBook(conn, book_no);
 
-		int check = new BookCafeDao().check(conn, book_no, stock);
-		
-		int result = 0;
-		
-		if (check == 1) {
-			result = new BookCafeDao().lendBook(conn, book_no, stock);
-		} else if (check == 2) {
-			result = 2;
-		} else if (check == 0) {
-			result = 0;
-		}
-		return result;
-	}
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
 
-	public int receiveBook(int book_no, int stock) {
-		
-		Connection conn = getconnection();
-		
-		int result = new BookCafeDao().receiveBook(conn, book_no, stock);
-		
-		return result;
-	}
+        close(conn);
+
+        return result;
+    }
+
+    public int lendBook(int book_no, int stock) {
+
+        Connection conn = getconnection();
+
+        int check = new BookCafeDao().check(conn, book_no, stock);
+
+        int result = 0;
+
+        if (check == 1) {
+            result = new BookCafeDao().lendBook(conn, book_no, stock);
+        } else if (check == 2) {
+            result = 2;
+        } else if (check == 0) {
+            result = 0;
+        }
+        return result;
+    }
+
+    public int receiveBook(int book_no, int stock) {
+
+        Connection conn = getconnection();
+
+        int result = new BookCafeDao().receiveBook(conn, book_no, stock);
+
+        return result;
+    }
 
 }

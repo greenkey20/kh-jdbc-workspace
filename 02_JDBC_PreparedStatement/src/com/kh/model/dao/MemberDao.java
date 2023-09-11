@@ -200,7 +200,7 @@ public class MemberDao {
 			}
 		}
 		
-		// 8) 결과 반환(필기 다 못함)
+		// 8) 결과(=조회 결과들이 뽑혀서 모두 담겨있는 list) 반환
 		return list;
 		// return = 이 메소드를 호출한 곳으로 돌아감 + 반환할/돌려줄 값이 있는 경우 기재
 	}  // selectAll() 종료
@@ -224,7 +224,7 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if (rset.next()) { // 1건만 반환받으니까 조건문 if로 걸러주는 것(?) 맞나?
+			if (rset.next()) { // 1건만 반환받으니까 조건문 if로 걸러줌
 				m = new Member(rset.getInt("USERNO")
 							 , rset.getString("USERID")
 							 , rset.getString("USERPWD")
@@ -269,9 +269,9 @@ public class MemberDao {
 		// 문제 의도에 더 맞는 SQL문: String sql = "SELECT * FROM MEMBER WHERE USERNAME LIKE '%keyword%'";
 		
 		// 안 되는 방법: String sql = "SELECT * FROM MEMBER WHERE USER LIKE '%?%'"; -> '%'keyword'%'로 완성되어 정상 수행 안 됨
-		// userNameKeyword = "끼";
-		// String sql = "SELECT * FROM MEMBER WHERE USER LIKE '%?%'";
-		// pstmt.setString(1, keyword); // "SELECT * FROM MEMBER WHERE USER LIKE '%'끼'%'" 이렇게 SQL문 완성되어 날아감
+		// e.g. userNameKeyword = "끼";
+		// 		String sql = "SELECT * FROM MEMBER WHERE USER LIKE '%?%'";
+		// 		pstmt.setString(1, keyword); // "SELECT * FROM MEMBER WHERE USER LIKE '%'끼'%'" 이렇게 SQL문 완성되어 날아감
 		
 		// 방법1)
 		String sql = "SELECT * FROM MEMBER WHERE USERNAME LIKE '%' || ? || '%'"; // SQL || = 연결연산자 -> '%' || 'keyword' || '%' = '%keyword%'

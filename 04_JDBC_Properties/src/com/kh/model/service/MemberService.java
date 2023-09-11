@@ -1,14 +1,15 @@
 // 2021.11.25(목) 16h
-package com.kh.model.service;
+package src.com.kh.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import static com.kh.common.JDBCTemplate.*; // JDBCTemplate 클래스에 있는 모든 메소드(*)를 static으로 쓰겠다; static 메소드들을 import함
+// JDBCTemplate 클래스에 있는 모든 메소드(*)를 static으로 쓰겠다; static 메소드들을 import함
+import static src.com.kh.common.JDBCTemplate.*;
 // 접근제한자 -> 패키지 내/외부 접근 관련 e.g. JDBCTemplate 클래스 및 그 안의 메소드들이 static이기 때문에(x) 클래스 및 메소드들의 접근제한자가 public으로 되어있기 때문에(o) 다른 클래스에서 사용할 수 있음
 // static -> 프로그램 '실행' 시작하면 메모리의 static 영역에 올라가서 프로그램 실행 중에 계속 있음 + 프로그램 종료되면 사라짐 -> 객체 생성(heap 메모리 영역에 올림) 없이 사용 가능
-import com.kh.model.dao.MemberDao;
-import com.kh.model.vo.Member;
+import src.com.kh.model.dao.MemberDao;
+import src.com.kh.model.vo.Member;
 
 /* Service(서비스) 클래스 : 기존의 Dao 클래스의 역할 분담 -> Controller와 Dao 사이의 역할 -> Controller에서 Service 호출(Connection 객체 생성) 후, Service를 거쳐서 Dao로 넘어감; '연결'하고 Connection 관련 역할 담당
  * Dao 호출 시 Connection 객체 + 기존에 Controller에서 Dao로 넘기고자 했던 매개변수를 같이 넘겨줌 -> DML구문의 경우, Dao 처리가 끝나면 Dao 결과에 따른 트랜잭션 처리도 Service단에서 같이 해줌

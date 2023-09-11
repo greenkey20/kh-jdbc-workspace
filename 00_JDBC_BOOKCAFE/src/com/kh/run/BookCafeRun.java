@@ -1,6 +1,6 @@
-package com.kh.run;
+package src.com.kh.run;
 
-import com.kh.view.BookCafeView;
+import src.com.kh.view.BookCafeView;
 
 public class BookCafeRun {
 

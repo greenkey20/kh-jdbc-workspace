@@ -1,12 +1,11 @@
 // 2021.11.25(목) 16h
 package src.com.kh.controller;
 
-import java.util.ArrayList;
+import src.com.kh.model.service.MemberService;
+import src.com.kh.model.vo.Member;
+import src.com.kh.view.MemberView;
 
-import com.kh.model.dao.MemberDao;
-import com.kh.model.service.MemberService;
-import com.kh.model.vo.Member;
-import com.kh.view.MemberView;
+import java.util.ArrayList;
 
 public class MemberController {
 
@@ -33,7 +32,6 @@ public class MemberController {
 	public void selectAll() {
 
 		// SELECT -> ResultSet -> ArrayList
-
 		ArrayList<Member> list = new MemberService().selectAll(); // == list
 
 		// 조회 결과가 있는지 없는지 판단 후 사용자가 보게 될 View 화면 지정

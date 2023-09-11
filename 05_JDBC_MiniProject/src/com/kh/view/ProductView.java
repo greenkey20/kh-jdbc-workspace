@@ -1,10 +1,10 @@
-package com.kh.view;
+package src.com.kh.view;
+
+import src.com.kh.controller.ProductController;
+import src.com.kh.model.vo.Product;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import com.kh.controller.ProductController;
-import com.kh.model.vo.Product;
 
 public class ProductView {
 

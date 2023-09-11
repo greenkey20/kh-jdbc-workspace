@@ -1,5 +1,5 @@
 // 2021.11.25(목) 16h
-package com.kh.common;
+package src.com.kh.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,7 +54,7 @@ public class JDBCTemplate {
 	} // close() 종료
 	
 	// 2b) Statement 객체를 전달받아서 반납시켜주는 메소드
-	public static void close(Statement stmt) { // 메소드명과 반환형이 같더라도 매개변수가 다르기 때문에 오버로딩; 동일한 메소드 signature(개념 기억이 안 나네..)를 갖는..
+	public static void close(Statement stmt) { // 메소드명과 반환형이 같더라도 매개변수가 다르기 때문에 오버로딩; 동일한 메소드 signature를 갖는..
 		// PreparedStatement는 Statement 클래스의 자식클래스로써, 부모의 자료형 사용 가능 -> 1가지 타입으로 여러 가지 자료형 사용 가능 = 다형성 -> 부모의 close() 메소드 사용 가능; PreparedStatement 객체 또한 이 메소드의 매개변수로 전달 가능
 		try {
 			if (stmt != null && !stmt.isClosed()) {

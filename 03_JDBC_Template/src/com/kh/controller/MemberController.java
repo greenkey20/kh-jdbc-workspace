@@ -1,12 +1,11 @@
 // 2021.11.25(목) 16h
-package com.kh.controller;
+package src.com.kh.controller;
+
+import src.com.kh.model.service.MemberService;
+import src.com.kh.model.vo.Member;
+import src.com.kh.view.MemberView;
 
 import java.util.ArrayList;
-
-import com.kh.model.dao.MemberDao;
-import com.kh.model.service.MemberService;
-import com.kh.model.vo.Member;
-import com.kh.view.MemberView;
 
 public class MemberController {
 

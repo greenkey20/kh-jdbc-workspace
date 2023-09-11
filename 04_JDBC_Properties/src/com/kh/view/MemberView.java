@@ -1,13 +1,11 @@
 // 2021.11.25(목) 16h
-package com.kh.view;
+package src.com.kh.view;
+
+import src.com.kh.controller.MemberController;
+import src.com.kh.model.vo.Member;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
-import com.kh.controller.MemberController;
-import com.kh.model.vo.Member;
 
 public class MemberView {
 
@@ -130,7 +128,7 @@ public class MemberView {
 
 	public void updateMember() {
 
-		System.out.println(" --- 회원정보변경 ---");
+		System.out.println(" --- 회원 정보 변경 ---");
 
 		// 변경할 회원의 아이디
 		System.out.print("변경할 회원의 아이디 > ");

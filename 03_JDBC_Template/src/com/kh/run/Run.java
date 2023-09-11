@@ -1,6 +1,6 @@
-package com.kh.run;
+package src.com.kh.run;
 
-import com.kh.view.MemberView;
+import src.com.kh.view.MemberView;
 
 public class Run {
 

@@ -1,4 +1,4 @@
-package com.kh.model.vo;
+package src.com.kh.model.vo;
 
 public class Product {
 

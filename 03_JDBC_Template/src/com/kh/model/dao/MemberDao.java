@@ -1,5 +1,5 @@
 // 2021.11.25(목) 16h
-package com.kh.model.dao;
+package src.com.kh.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static com.kh.common.JDBCTemplate.*;
-import com.kh.model.vo.Member;
+import static src.com.kh.common.JDBCTemplate.*;
+import src.com.kh.model.vo.Member;
 
 public class MemberDao {
 	/* JDBC용 객체
@@ -17,9 +17,8 @@ public class MemberDao {
 	 * - ResultSet : 만일 실행한 SQL문이 SELECT문일 경우 조회된 결과들이 담겨있는 객체
 	 * 
 	 * ** PreparedStatement 특징 : SQL문을 바로 실행하지 않고 잠시 보관하는 개념
-	 * 			미완성된 SQL문을 먼저 전달하고 실행하기전에 완성 형태로 만든 후 실행만 하면 됨  
-	 *    		미완성된 SQL문 만들기 (사용자가 입력한 값들이 들어갈 수 있는 공간을 ?(위치홀더)로 확보
-	 * 			각 위치홀더에 맞는 값들을 세팅
+	 * 			미완성된 SQL문을 먼저 전달하고, 실행하기전에 완성 형태로 만든 후 실행만 하면 됨
+	 *    		미완성된 SQL문 만들기 = 사용자가 입력한 값들이 들어갈 수 있는 공간을 ?(위치홀더)로 확보 -> 각 위치홀더에 맞는 값들을 세팅
 	 * 
 	 * ** Statement(부모)와 PreparedStatement(자식) 관계
 	 * * 차이점
@@ -29,7 +28,7 @@ public class MemberDao {
 	 *    PreparedStatement 객체 생성 시 pstmt = conn.prepareStatement(sql);
 	 *    
 	 * 3) Statement로 SQL문 실행 시 			결과 = stmt.executeXXXX(sql);
-	 * PreparedStatement로 SQL문 실행 시 ?로 빈 공간을 실제 값으로 채워 준뒤 실행한다.
+	 * PreparedStatement로 SQL문 실행 시 ?로 빈 공간을 실제 값으로 채워준 뒤 실행한다.
 	 * 												pstmt.setString(?위치, 실제값);
 	 * 												pstmt.setInt(?위치, 실제값);
 	 * 										결과 = pstmt.executexxxx();
@@ -279,14 +278,23 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 
 		// 실행할 SQL문: UPDATE MEMBER SET USERPWD = 'xx', EMAIL = 'xx', PHONE = 'xx', ADDRESS = 'xx' WHERE USERID = 'xx';
-		String sql = "UPDATE MEMBER SET USERPWD = ?, EMAIL = ?, PHONE = ?, ADDRESS = ? where USERID = ?"; // 강사님께서 알려주신 띄어쓰기 방식으로 고쳐쓰기 >.<
-		
+//		String sql = "UPDATE MEMBER SET USERPWD = ?, EMAIL = ?, PHONE = ?, ADDRESS = ? where USERID = ?"; // 강사님께서 알려주신 띄어쓰기 방식(아래 코드 참조)으로 고쳐쓰기 >.<
+		String sql = "UPDATE "
+								+ "MEMBER "
+						+ "SET "
+								+ "USERPWD = ?,"
+								+ "EMAIL = ?,"
+								+ "PHONE = ?,"
+								+ "ADDRESS = ?"
+						+ "WHERE "
+								+ "USERID = ?";
+
 		try {
 			// 3a) PreparedStatement 객체 생성 + SQL문을 미리 넘겨줌
 			pstmt = conn.prepareStatement(sql); // Unhandled exception type SQLException
 			// JDBC 시험 = 서술형 8문제(DBMS/Oracle 필기/교재 내용) + 문제해결 시나리오 4문제(JDBC 순서(에 따라 무엇을 해줘야 하는지 등) 모두 이해하고 (Prepared)Statement codes 각각 5번씩 + Template 3번씩 직접 써봐야 함  
 			// 문제해결 시나리오 문제 exemple = 윗줄을 conn.prepareStatement(sql);로 쓰면 무엇이 + 왜 작동이 안 되는가?
-			// 문제점 = PreparedStatement 객체가 null이기 때문에 __에서/__ 때에(잘 모르겠음) null point exception 발생 
+			// 문제점 = PreparedStatement 객체가 null이기 때문에 __에서/__ 때에(잘 모르겠음) null point exception 발생 -> 2023.9.11(월) 19h 나의 생각 = 미완성 상태의 SQL문 완성시킬 때?
 			// 사유 = 윗줄 코드에서 PreparedStatement 객체를 변수에 담지 않았기 때문에(맞게 듣고 이해한 것인가? 17h20 우리반영상 다시 보고 싶음)
 			// 해결방법 = 윗줄 코드를 pstmt = conn.prepareStatement(sql);와 같이 수정
 			
